@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: scaletestapp
+  name: scaletestapp-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: scaletestapp
+  template:
+    metadata:
+      labels:
+        app: scaletestapp
+    spec:
+      containers:
+        - image: ghcr.io/yandex-practicum/scaletestapp
+          name: scaletestapp
+          resources:
+            limits:
+              memory: 30Mi

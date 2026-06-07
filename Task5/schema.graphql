@@ -1,0 +1,29 @@
+type Client {
+    id: ID!
+    name: String
+    age: Int
+    documents: [Document!]
+    relatives: [Relative!]
+}
+
+type Document {
+    id: ID!
+    type: String
+    number: String
+    issueDate: String
+    expiryDate: String
+}
+
+type Relative {
+    id: ID!
+    relationType: String
+    name: String
+    age: Int
+}
+
+type Query {
+    # Так как Client содержит поля documents и relatives, то нет необходимости описывать отдельные запросы для них.
+    # Пользователь может запросить все необходимые ему данные одним запросом.
+    # Если данные самого клиента не нужны, а необходимы только связанные объекты - поля клиента удаляются из запроса.
+    client(id: ID!): Client
+}
